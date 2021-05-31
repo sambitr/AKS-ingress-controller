@@ -90,3 +90,26 @@ spec:
 
 ### Confirm the applition running
 
+### Create the ingress Route
+
+Finally to connect the ingress controller to the app we create an ingress route. The selector matches the metadata/name for the app in services above ie k8s-hello. This is created in the "default" namesace
+
+```
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: hello-k8-ingress
+annotations:
+  kubernetes.io/ingress.class: nginx
+  nginx.ingress.kubernetes.io/ssl-redirect: "false"
+  nginx.ingress.kubernetes.io/rewrite-trget: /
+spec:
+  rules:
+  - http:
+      paths:
+        - backend:
+            serviceName: k8s-hello
+            servicePort: 80
+        path: /
+```
+
