@@ -50,6 +50,7 @@ ingress-nginx-ingress-default-backend  ClusterIP 10.251.15.115 <none>  80/TCP 28
 
 ### Example of application configured to use the ingress controller
 
+```
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -86,3 +87,6 @@ spec:
     targetPort: 8000
   selector: k8s-hello-app
 ```
+
+### Confirm the applition running
+
