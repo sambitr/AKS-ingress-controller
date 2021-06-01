@@ -16,13 +16,13 @@ tar -xvzf helm3.tar.gz
 /tmp/linux-amd64/helm upgrade --install ingress /tmp/nginx-ingress.tgz \
     --namespace <namespace name>
     --set controller.service.annotations."service\.beta\.kubernetes\.io/azure-load-balancer-internal"=true \
-    --set controller.image.repository="conainer-registry.ubs.net/kubernetes-ingress-controller/nginx-ingress-controller" \
+    --set controller.image.repository="<docker-registry>/kubernetes-ingress-controller/nginx-ingress-controller" \
     --set controller.image.tag="0.26.1" \
     --set controller.resources.requests.cpu="250m" \
     --set controller.resources.requests.memory="64Mi" \
     --set controller.resources.limits.cpu="500m" \
     --set controller.resources.limits.memory="128Mi" \
-    --set defaultBackend.image.repository="container-registry.ubs.net/google-containers/defaultbackend" \
+    --set defaultBackend.image.repository="<docker-registry>/google-containers/defaultbackend" \
     --set defaultBackend.image.tag="1.4" \
     --set defaultBackend.resources.requests.cpu="500m" \
     --set defaultBackend.resources.requests.memory="512Mi" \
@@ -68,7 +68,7 @@ spec:
   spec:
     containers:
     - name: k8s-hello-app
-      inage: container-registry.ubs.net/bdent/k8s-hello-whisky:1.0.70-SNAPSHOT
+      inage: <docker-registry>/bdent/k8s-hello-whisky:1.0.70-SNAPSHOT
       resources:
         limits:
           cpu: "1000m"
