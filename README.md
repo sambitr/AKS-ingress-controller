@@ -99,7 +99,9 @@ apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
   name: hello-k8-ingress
+  namespace: <namespace name>
 annotations:
+  kubernetes.io/ingress.allow-http: "false"
   kubernetes.io/ingress.class: nginx
   nginx.ingress.kubernetes.io/ssl-redirect: "false"
   nginx.ingress.kubernetes.io/rewrite-trget: /
@@ -107,9 +109,13 @@ spec:
   rules:
   - http:
       paths:
-        - backend:
-            serviceName: k8s-hello
-            servicePort: 80
+      - backend:
+          serviceName: <service name>
+          servicePort: 80
         path: /
+   tls:
+   - hosts:
+     - <FQDN name you created for the ingress>
+     secretName: <TLS secret name containing the certs.>
 ```
 
